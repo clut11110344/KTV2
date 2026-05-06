@@ -87,7 +87,7 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 2:55:00 年輪說
 2:57:00 怎麼還不愛
 3:01:19 半醉半清醒
-第3次 https://youtu.be/d9--rBcJVtE
+第3次 https://youtu.be/GrAlzdiSWUM
 00:00 DNA
 3:36 追追追
 8:38 雨蝶
