@@ -14,10 +14,13 @@
 <body>
     <div class="container">
         <h1>N²演唱會 歌曲搜尋器</h1>
-        <p class="description">從歌單中快速搜尋歌曲!</p>
+        <p class="description">輸入完整或部分歌名即可快速搜尋，支援即時建議與分享連結</p>
 
         <div class="search-controls">
-            <input type="text" id="songNameInput" placeholder="請輸入歌名，例如：心牆" aria-label="歌曲名稱輸入框" autofocus>
+            <div class="search-input-wrapper">
+                <input type="text" id="songNameInput" placeholder="請輸入歌名，例如：心牆" aria-label="歌曲名稱輸入框" aria-expanded="false" aria-autocomplete="list" aria-controls="searchSuggestions" autocomplete="off" autofocus>
+                <ul id="searchSuggestions" class="search-suggestions" role="listbox" hidden></ul>
+            </div>
             <button id="searchButton"><i class="bi bi-search"></i> 搜尋</button>
             <button id="clearButton" class="secondary-button"><i class="bi bi-x-circle"></i> 清除</button>
         </div>

@@ -1,5 +1,10 @@
 // 全域變數來儲存解析後的歌曲資料
 let performancesData = {};
+/** @type {{ name: string, normalized: string }[]} */
+let songIndex = [];
+let suggestionDebounceTimer = null;
+let activeSuggestionIndex = -1;
+let lastSuggestionQuery = '';
 
 // --- 內嵌的歌單內容 ---
 // 請將您的 song_list.txt 檔案的完整內容，貼到下方三引號之間
@@ -1417,6 +1422,330 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 // --- 輔助函式 ---
 
 /**
+ * 正規化搜尋字串（去除空白、轉小寫）。
+ * @param {string} text
+ * @returns {string}
+ */
+function normalizeForSearch(text) {
+    return String(text || '').trim().toLowerCase().replace(/\s+/g, '');
+}
+
+/**
+ * 建立歌曲名稱索引（依歌名排序，預先正規化以加速搜尋）。
+ * @param {Object} performances
+ */
+function buildSongIndex(performances) {
+    songIndex = Object.keys(performances)
+        .sort((a, b) => a.localeCompare(b, 'zh-Hant'))
+        .map(name => ({ name, normalized: normalizeForSearch(name) }));
+}
+
+/**
+ * 依查詢字串找出符合的歌曲（完全匹配 > 開頭匹配 > 包含匹配）。
+ * @param {string} query
+ * @param {number} limit
+ * @returns {{ matches: string[], totalCount: number }}
+ */
+function findMatchingSongs(query, limit = 20) {
+    const normalizedQuery = normalizeForSearch(query);
+    if (!normalizedQuery) return { matches: [], totalCount: 0 };
+
+    const exact = [];
+    const startsWith = [];
+    const contains = [];
+
+    for (const { name, normalized } of songIndex) {
+        if (normalized === normalizedQuery) {
+            exact.push(name);
+        } else if (normalized.startsWith(normalizedQuery)) {
+            startsWith.push(name);
+        } else if (normalized.includes(normalizedQuery)) {
+            contains.push(name);
+        }
+    }
+
+    const allMatches = [...exact, ...startsWith, ...contains];
+    return {
+        matches: allMatches.slice(0, limit),
+        totalCount: allMatches.length
+    };
+}
+
+/**
+ * 更新網址列查詢參數，方便分享搜尋結果。
+ * @param {string} query
+ */
+function updateSearchUrl(query) {
+    const url = new URL(window.location.href);
+    const trimmed = query.trim();
+    if (trimmed) {
+        url.searchParams.set('q', trimmed);
+    } else {
+        url.searchParams.delete('q');
+    }
+    window.history.replaceState(null, '', url);
+}
+
+/**
+ * 渲染單首歌曲的演唱記錄。
+ * @param {HTMLElement} resultsDiv
+ * @param {string} songName
+ */
+function renderSongPerformances(resultsDiv, songName) {
+    const foundPerformances = performancesData[songName];
+    if (!foundPerformances || foundPerformances.length === 0) return false;
+
+    resultsDiv.innerHTML = `<h3>找到「${songName}」的演唱記錄（共 ${foundPerformances.length} 場）：</h3>`;
+    const ul = document.createElement('ul');
+
+    foundPerformances.forEach(perf => {
+        const li = document.createElement('li');
+        const seconds = timeToSeconds(perf.timestamp);
+        const youtubeUrl = `${perf.url}?t=${seconds}`;
+
+        li.innerHTML = `<strong>${perf.session}</strong><br>`;
+        const watchButton = document.createElement('button');
+        watchButton.className = 'watch-button';
+        watchButton.innerHTML = '<i class="bi bi-youtube"></i> 點此觀看';
+        watchButton.onclick = () => window.open(youtubeUrl, '_blank');
+        li.appendChild(watchButton);
+        ul.appendChild(li);
+    });
+
+    resultsDiv.appendChild(ul);
+    return true;
+}
+
+/**
+ * 渲染多首符合歌曲的選擇清單。
+ * @param {HTMLElement} resultsDiv
+ * @param {string[]} matches
+ * @param {string} query
+ */
+function renderMultipleMatches(resultsDiv, matches, query, totalCount = matches.length) {
+    const heading = totalCount > matches.length
+        ? `找到 ${totalCount} 首符合「${escapeHtml(query)}」的歌曲（顯示前 ${matches.length} 首）：`
+        : `找到 ${matches.length} 首符合「${escapeHtml(query)}」的歌曲：`;
+    resultsDiv.innerHTML = `<h3>${heading}</h3>`;
+    const ul = document.createElement('ul');
+    ul.className = 'song-match-list';
+
+    matches.forEach(songName => {
+        const li = document.createElement('li');
+        const count = performancesData[songName]?.length || 0;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'song-match-button';
+        button.innerHTML = `<span class="song-match-name">${highlightMatch(songName, query)}</span><span class="song-match-count">${count} 場</span>`;
+        button.onclick = () => {
+            const songNameInput = document.getElementById('songNameInput');
+            if (songNameInput) songNameInput.value = songName;
+            hideSuggestions();
+            updateSearchUrl(songName);
+            renderSongPerformances(resultsDiv, songName);
+        };
+        li.appendChild(button);
+        ul.appendChild(li);
+    });
+
+    resultsDiv.appendChild(ul);
+
+    if (totalCount > matches.length) {
+        const showAllButton = document.createElement('button');
+        showAllButton.type = 'button';
+        showAllButton.className = 'show-all-button secondary-button';
+        showAllButton.innerHTML = `<i class="bi bi-list-ul"></i> 顯示全部 ${totalCount} 首`;
+        showAllButton.onclick = () => {
+            const { matches: allMatches, totalCount: fullCount } = findMatchingSongs(query, totalCount);
+            renderMultipleMatches(resultsDiv, allMatches, query, fullCount);
+        };
+        resultsDiv.appendChild(showAllButton);
+    }
+}
+
+/**
+ * 更新搜尋建議下拉選單。
+ * @param {string} query
+ */
+function updateSuggestions(query) {
+    const suggestionsEl = document.getElementById('searchSuggestions');
+    const songNameInput = document.getElementById('songNameInput');
+    if (!suggestionsEl || !songNameInput) return;
+
+    const trimmedQuery = query.trim();
+    if (!trimmedQuery) {
+        lastSuggestionQuery = '';
+        hideSuggestions();
+        return;
+    }
+
+    if (trimmedQuery === lastSuggestionQuery && !suggestionsEl.hidden) {
+        return;
+    }
+
+    const { matches, totalCount } = findMatchingSongs(trimmedQuery, 8);
+    if (matches.length === 0) {
+        lastSuggestionQuery = trimmedQuery;
+        hideSuggestions();
+        return;
+    }
+
+    lastSuggestionQuery = trimmedQuery;
+    suggestionsEl.innerHTML = '';
+    activeSuggestionIndex = -1;
+
+    matches.forEach((songName, index) => {
+        const li = document.createElement('li');
+        li.className = 'search-suggestion-item';
+        li.setAttribute('role', 'option');
+        li.dataset.index = String(index);
+        li.dataset.songName = songName;
+
+        const count = performancesData[songName]?.length || 0;
+        li.innerHTML = `<span>${highlightMatch(songName, trimmedQuery)}</span><span class="suggestion-count">${count} 場</span>`;
+
+        li.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            selectSuggestion(songName);
+        });
+
+        suggestionsEl.appendChild(li);
+    });
+
+    if (totalCount > matches.length) {
+        const moreHint = document.createElement('li');
+        moreHint.className = 'search-suggestion-more';
+        moreHint.setAttribute('aria-hidden', 'true');
+        moreHint.textContent = `還有 ${totalCount - matches.length} 首符合，按 Enter 查看全部`;
+        suggestionsEl.appendChild(moreHint);
+    }
+
+    suggestionsEl.hidden = false;
+    songNameInput.setAttribute('aria-expanded', 'true');
+}
+
+/**
+ * 轉義 HTML 特殊字元。
+ * @param {string} text
+ * @returns {string}
+ */
+function escapeHtml(text) {
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+/**
+ * 高亮顯示匹配片段（與 normalizeForSearch 規則一致，忽略空白差異）。
+ * @param {string} text
+ * @param {string} query
+ * @returns {string}
+ */
+function highlightMatch(text, query) {
+    const normalizedQuery = normalizeForSearch(query);
+    if (!normalizedQuery) return escapeHtml(text);
+
+    const normalizedText = normalizeForSearch(text);
+    const matchStart = normalizedText.indexOf(normalizedQuery);
+    if (matchStart === -1) return escapeHtml(text);
+
+    const normalizedEnd = matchStart + normalizedQuery.length;
+    const indexMap = [];
+    for (let i = 0; i < text.length; i++) {
+        if (!/\s/.test(text[i])) {
+            indexMap.push(i);
+        }
+    }
+
+    const origStart = indexMap[matchStart];
+    const origEnd = normalizedEnd < indexMap.length
+        ? indexMap[normalizedEnd]
+        : text.length;
+
+    const before = escapeHtml(text.slice(0, origStart));
+    const match = escapeHtml(text.slice(origStart, origEnd));
+    const after = escapeHtml(text.slice(origEnd));
+    return `${before}<mark>${match}</mark>${after}`;
+}
+
+function hideSuggestions() {
+    const suggestionsEl = document.getElementById('searchSuggestions');
+    const songNameInput = document.getElementById('songNameInput');
+    if (suggestionsEl) {
+        suggestionsEl.innerHTML = '';
+        suggestionsEl.hidden = true;
+    }
+    if (songNameInput) {
+        songNameInput.setAttribute('aria-expanded', 'false');
+    }
+    activeSuggestionIndex = -1;
+    lastSuggestionQuery = '';
+}
+
+function selectSuggestion(songName) {
+    const songNameInput = document.getElementById('songNameInput');
+    if (songNameInput) {
+        songNameInput.value = songName;
+    }
+    hideSuggestions();
+    searchSong(songName);
+}
+
+function setActiveSuggestion(index) {
+    const suggestionsEl = document.getElementById('searchSuggestions');
+    if (!suggestionsEl) return;
+
+    const items = suggestionsEl.querySelectorAll('.search-suggestion-item');
+    items.forEach(item => item.classList.remove('active'));
+
+    if (index < 0 || index >= items.length) {
+        activeSuggestionIndex = -1;
+        return;
+    }
+
+    activeSuggestionIndex = index;
+    items[index].classList.add('active');
+    items[index].scrollIntoView({ block: 'nearest' });
+}
+
+function handleSuggestionKeydown(event) {
+    const suggestionsEl = document.getElementById('searchSuggestions');
+    if (!suggestionsEl || suggestionsEl.hidden) return false;
+
+    const items = suggestionsEl.querySelectorAll('.search-suggestion-item');
+    if (items.length === 0) return false;
+
+    if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        const nextIndex = activeSuggestionIndex < items.length - 1 ? activeSuggestionIndex + 1 : 0;
+        setActiveSuggestion(nextIndex);
+        return true;
+    }
+
+    if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        const prevIndex = activeSuggestionIndex > 0 ? activeSuggestionIndex - 1 : items.length - 1;
+        setActiveSuggestion(prevIndex);
+        return true;
+    }
+
+    if (event.key === 'Enter' && activeSuggestionIndex >= 0) {
+        event.preventDefault();
+        selectSuggestion(items[activeSuggestionIndex].dataset.songName);
+        return true;
+    }
+
+    if (event.key === 'Escape') {
+        hideSuggestions();
+        return true;
+    }
+
+    return false;
+}
+
+/**
  * 將時間字串轉換為秒數。
  * @param {string} timeStr - 時間字串，格式為 'MM:SS' 或 'HH:MM:SS'。
  * @returns {number} - 轉換後的總秒數。
@@ -1573,92 +1902,51 @@ function parsePerformances(fileContent) {
 
 
 /**
- * 根據歌名搜尋歌曲並顯示結果。
- * @param {string} songName - 要搜尋的歌名。
+ * 根據歌名搜尋歌曲並顯示結果（支援模糊匹配）。
+ * @param {string} songName - 要搜尋的歌名或關鍵字。
  */
 function searchSong(songName) {
     const resultsDiv = document.getElementById('searchResults');
-    const searchButton = document.getElementById('searchButton');
     const songNameInput = document.getElementById('songNameInput');
+    const query = songName.trim();
 
-    // 清空結果區塊
-    if (resultsDiv) {
-        console.log("searchSong: 獲取到的 resultsDiv 元素:", resultsDiv);
-        resultsDiv.innerHTML = '';
-        console.log("searchSong: 清空 resultsDiv 內容。");
-    } else {
+    hideSuggestions();
+
+    if (!resultsDiv) {
         console.error("錯誤：searchSong 函式中找不到 ID 為 'searchResults' 的元素！");
-        // 即使沒有 resultsDiv，也要恢復按鈕狀態
-        if (searchButton) { searchButton.innerHTML = '<i class="bi bi-search"></i> 搜尋'; searchButton.disabled = false; }
-        if (songNameInput) { songNameInput.disabled = false; }
-        return; // 無法顯示結果，直接返回
+        return;
     }
-    
-    // 隱藏載入狀態訊息
+
+    resultsDiv.innerHTML = '';
+
     const loadingStatusDiv = document.getElementById('loadingStatus');
     hideStatusMessage(loadingStatusDiv);
 
-    // 搜尋中狀態
-    if (searchButton) {
-        searchButton.innerHTML = '<i class="bi bi-arrow-clockwise loading-spinner"></i> 搜尋中...';
-        searchButton.disabled = true;
+    if (!performancesData || Object.keys(performancesData).length === 0) {
+        resultsDiv.innerHTML = '<p class="status-message error"><i class="bi bi-exclamation-circle"></i> 錯誤：歌曲資料尚未載入或歌單為空。</p>';
+        return;
     }
+
+    if (!query) {
+        updateSearchUrl('');
+        resultsDiv.innerHTML = '<p class="status-message info"><i class="bi bi-info-circle"></i> 請輸入要搜尋的歌名。</p>';
+        return;
+    }
+
+    updateSearchUrl(query);
+    const { matches, totalCount } = findMatchingSongs(query);
+
+    if (matches.length === 1) {
+        renderSongPerformances(resultsDiv, matches[0]);
+    } else if (matches.length > 1) {
+        renderMultipleMatches(resultsDiv, matches, query, totalCount);
+    } else {
+        resultsDiv.innerHTML = `<p class="status-message info"><i class="bi bi-info-circle"></i> 找不到「${escapeHtml(query)}」的演唱記錄。請確認歌名是否正確，或嘗試輸入部分歌名。</p>`;
+    }
+
     if (songNameInput) {
-        songNameInput.disabled = true;
+        songNameInput.focus();
     }
-
-    // 模擬網路延遲（可移除），讓使用者看到「搜尋中...」
-    setTimeout(() => {
-        if (!performancesData || Object.keys(performancesData).length === 0) {
-            resultsDiv.innerHTML = '<p class="status-message error"><i class="bi bi-exclamation-circle"></i> 錯誤：歌曲資料尚未載入或歌單為空。</p>';
-            console.log("searchSong: 歌曲資料為空或未載入。");
-            // 恢復搜尋按鈕和輸入框狀態
-            if (searchButton) { searchButton.innerHTML = '<i class="bi bi-search"></i> 搜尋'; searchButton.disabled = false; }
-            if (songNameInput) { songNameInput.disabled = false; }
-            return;
-        }
-
-        const foundPerformances = performancesData[songName];
-        console.log(`searchSong: 搜尋 '${songName}'，找到結果:`, foundPerformances);
-
-        if (foundPerformances && foundPerformances.length > 0) {
-            const ul = document.createElement('ul');
-            resultsDiv.innerHTML = `<h3>找到 '${songName}' 的演唱記錄：</h3>`;
-
-            foundPerformances.forEach(perf => {
-                const li = document.createElement('li');
-                const seconds = timeToSeconds(perf.timestamp);
-                const youtubeUrl = `${perf.url}?t=${seconds}`;
-
-                // 修改為「點此觀看」按鈕
-                li.innerHTML = `
-                    <strong>${perf.session}</strong><br>
-                `;
-                const watchButton = document.createElement('button');
-                watchButton.className = 'watch-button'; // 新增一個 class 用於樣式
-                watchButton.innerHTML = '<i class="bi bi-youtube"></i> 點此觀看';
-                watchButton.onclick = () => window.open(youtubeUrl, '_blank'); // 點擊按鈕在新視窗打開連結
-                li.appendChild(watchButton); // 將按鈕添加到 li 中
-
-                ul.appendChild(li);
-            });
-            resultsDiv.appendChild(ul);
-            console.log("searchSong: ul 元素加入 resultsDiv。最終 resultsDiv.innerHTML:", resultsDiv.innerHTML);
-        } else {
-            resultsDiv.innerHTML = `<p class="status-message info"><i class="bi bi-info-circle"></i> 找不到 '${songName}' 的演唱記錄。請確認歌名是否正確。</p>`;
-            console.log("searchSong: 顯示找不到歌曲的訊息。");
-        }
-
-        // 恢復搜尋按鈕和輸入框狀態
-        if (searchButton) {
-            searchButton.innerHTML = '<i class="bi bi-search"></i> 搜尋';
-            searchButton.disabled = false;
-        }
-        if (songNameInput) {
-            songNameInput.disabled = false;
-        }
-        songNameInput.focus(); // 搜尋後將焦點放回輸入框
-    }, 300); // 模擬搜尋延遲，讓使用者看到「搜尋中...」
 }
 
 /**
@@ -1667,12 +1955,15 @@ function searchSong(songName) {
 function clearSearch() {
     const songNameInput = document.getElementById('songNameInput');
     const resultsDiv = document.getElementById('searchResults');
-    const loadingStatusDiv = document.getElementById('loadingStatus'); // 確保獲取 loadingStatusDiv
-    const searchButton = document.getElementById('searchButton'); // 獲取搜尋按鈕
+    const loadingStatusDiv = document.getElementById('loadingStatus');
+    const searchButton = document.getElementById('searchButton');
+
+    hideSuggestions();
+    updateSearchUrl('');
 
     if (songNameInput) {
-        songNameInput.value = ''; // 清空輸入框
-        songNameInput.focus(); // 清空後聚焦輸入框
+        songNameInput.value = '';
+        songNameInput.focus();
     }
     if (resultsDiv) {
         // 恢復到初始的提示訊息
@@ -1721,7 +2012,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
         performancesData = parsePerformances(EMBEDDED_SONG_LIST_CONTENT);
-        console.log("直接解析內嵌歌單完成。performancesData:", performancesData);
+        buildSongIndex(performancesData);
+        console.log("直接解析內嵌歌單完成。歌曲數量:", songIndex.length);
         
         if (loadingStatusDiv) {
             // 取得所有場次名稱，找出最大『第N次』
@@ -1783,20 +2075,42 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("錯誤：找不到 ID 為 'clearButton' 的元素，無法綁定清空事件！請檢查 index.html。");
     }
 
-    // 允許按 Enter 鍵搜尋
+    // 允許按 Enter 鍵搜尋，並支援建議選單鍵盤操作
     if (songNameInput && searchButton) {
-        songNameInput.addEventListener('keypress', (event) => {
+        songNameInput.addEventListener('input', () => {
+            clearTimeout(suggestionDebounceTimer);
+            suggestionDebounceTimer = setTimeout(() => {
+                updateSuggestions(songNameInput.value);
+            }, 150);
+        });
+
+        songNameInput.addEventListener('keydown', (event) => {
+            if (handleSuggestionKeydown(event)) return;
             if (event.key === 'Enter') {
-                console.log("輸入框按下 Enter 鍵！");
-                searchButton.click(); // 模擬點擊搜尋按鈕
+                searchButton.click();
+            }
+        });
+
+        songNameInput.addEventListener('blur', () => {
+            setTimeout(hideSuggestions, 150);
+        });
+
+        document.addEventListener('click', (event) => {
+            const wrapper = document.querySelector('.search-input-wrapper');
+            if (wrapper && !wrapper.contains(event.target)) {
+                hideSuggestions();
             }
         });
     } else {
         console.error("錯誤：無法綁定 Enter 鍵事件！檢查 ID 為 'songNameInput' 或 'searchButton' 的元素是否存在。");
     }
 
-    // 頁面載入後自動聚焦到搜尋輸入框 (HTML autofocus 屬性通常更優先)
-    if (songNameInput) {
+    // 從網址 ?q= 參數還原搜尋（方便分享連結）
+    const initialQuery = new URLSearchParams(window.location.search).get('q');
+    if (initialQuery && songNameInput) {
+        songNameInput.value = initialQuery;
+        searchSong(initialQuery);
+    } else if (songNameInput) {
         songNameInput.focus();
     }
 });
