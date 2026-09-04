@@ -47,14 +47,13 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 38:26 不曾回來過
 40:15 是我不夠好
 43:40 秋雨彼一暝
-45:18 合唱超好的部分
+45:18 秋雨彼一暝 (合唱超好的部分)
 48:58 塵埃
 53:51 含淚跳恰恰
 57:19 王見王
 59:16 倒數
 1:00:51 不應該勇敢
-1:04:29 精彩part
-身旁黏著甩不開的悲哀
+1:04:29 不應該勇敢 (精彩part / 甩不開的悲哀)
 1:05:47 幸福就好
 1:07:38 過得去
 1:09:47 不哭
@@ -103,7 +102,7 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 29:47 特務J
 32:40 雨愛
 37:47 不應該勇敢
-41:38 身旁黏著甩不開的悲哀
+41:38 不應該勇敢 (甩不開的悲哀)
 42:47 不曾回來過
 47:26 月牙灣
 52:48 1/2
@@ -241,9 +240,9 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 1:23:43 有沒有
 1:28:01 雨季
 1:32:55 不應該勇敢
-1:34:11 甩不開的悲哀
-1:36:07 甩不開的悲哀(你喜歡的)
-1:36:31 甩不開的悲哀(高音)
+1:34:11 不應該勇敢 (甩不開的悲哀)
+1:36:07 不應該勇敢 (你喜歡的)
+1:36:31 不應該勇敢 (高音)
 1:37:43 不解釋親吻
 1:41:45 下雨天
 1:46:29 沒理由
@@ -711,7 +710,7 @@ aespa 第14次 https://youtu.be/wTLML2vm-84
 28:30 等一個人
 32:51 夢中的情話
 37:10 Scream
-39:08 SHE BAD
+39:08 She Bad
 42:02 不敗
 44:14 淋雨一直走
 45:45 末日有我
@@ -719,7 +718,7 @@ aespa 第14次 https://youtu.be/wTLML2vm-84
 48:55 曖昧
 50:05 辣妹駕到
 51:42 怎麼還不愛
-55:55 THUNDER
+55:55 Thunder
 56:30 保庇
 56:52 不哭
 1:01:07 睫毛彎彎
@@ -757,7 +756,7 @@ aespa 第14次 https://youtu.be/wTLML2vm-84
 2:11:53 Don't Worry, Be Happy
 2:12:12 唯舞
 2:13:40 1/2
-2:17:50 Don't Stop the Music
+2:17:50 Don't Stop The Music
 2:19:38 戀愛泡泡糖
 2:20:40 Supernova
 2:23:48 女皇
@@ -774,8 +773,8 @@ aespa 第14次 https://youtu.be/wTLML2vm-84
 24:44 你好不好
 29:57 永不失聯的愛
 31:53 愛情的騙子我問你
-36:22 愛情三十六計
-37:35 看我七十二變
+36:22 愛情36計
+37:35 看我72變
 38:44 往事隨風
 40:50 大丈夫
 42:21 美人計
@@ -881,7 +880,7 @@ JPM 第17次 https://youtu.be/1OXRh-E0MLM
 23:43 愛X無限大
 27:36 C大調
 30:56 頭號甜心
-35:05 Mr.Taxi
+35:05 Mr. Taxi
 36:16 Genie
 37:02 私奔到月球
 38:46 DNA
@@ -1268,15 +1267,15 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 22:13 聽見下雨的聲音
 26:51 李白
 31:29 模特
-36:33 我是你的眼
+36:33 你是我的眼
 39:49 末班車
 42:20 好好先生
-44:53 Super girl 愛無畏
+44:53 Super Girl 愛無畏
 48:50 打呼
 52:35 瀟灑小姐
 56:29 I'm Not Yours
 1:01:32 美杜莎
-1:05:40 Play 我呸
+1:05:40 Play我呸
 1:09:09 好朋友的祝福
 1:13:12 給我一個理由忘記
 1:18:09 不應該勇敢
@@ -1306,7 +1305,7 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 8:17 大藝術家
 11:35 特務J
 15:00 I'm Not Yours
-19:36 看我七十二變
+19:36 看我72變
 23:27 輕輕
 27:30 怪美的
 32:15 多遠都要在一起
@@ -1330,7 +1329,6 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 1:31:35 聽見下雨的聲音
 1:35:56 菊花台
 1:37:40 勢在必行
-
 {N} 第十七次 https://youtu.be/aS9P7XFY8UY
 1:16 乖乖牌
 5:30 亞特蘭提斯
@@ -1359,21 +1357,20 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 1:54:00 半醉半清醒
 1:55:58 返來阮身邊
 1:57:55 Super Girl 愛無畏
-1:59:54 Baby boy
+1:59:54 Baby Boy
 2:01:10 我沒資格
 2:02:41 夠不著的你
-
 {N} 第十八次 https://youtu.be/BJ0OlgadZOs
-5:09 Hellokitty
-7:06 Fire fighter
+5:09 Hellokittybalahcurrihellokitty美味しい
+7:06 Fire Fighter
 8:26 頑美
-9:44 oh my oh my
+9:44 Oh My Oh My
 11:16 DIY
-12:13 forever pink
-13:45 jagi
+12:13 Forever Pink
+13:45 Jagi
 15:41 來追我男友吧
-18:33 oh la la la
-19:00 bite back
+18:33 Oh La La La
+19:00 Bite Back
 23:09 潛伏期
 27:32 眼淚記得你
 31:53 
@@ -1384,7 +1381,7 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 45:50 小心翻閱
 50:10 數到十
 54:18 甜祕密
-58:45 bad lady
+58:45 Bad Lady
 1:02:25 女神
 1:05:49 美麗頭條
 1:06:50 愛你但說不出口
@@ -1396,9 +1393,9 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 1:23:46 陷阱
 1:25:53 你想娶我嗎
 1:29:28 Wannabe
-1:31:42 Lets everything happen
+1:31:42 Let Everything Happen
 1:35:51 預感
-1:41:49 hey girl
+1:41:49 Hey Girl
 1:46:43 Play我呸
 1:50:07 愈慢愈美麗
 1:53:15 怪美的
@@ -1414,18 +1411,17 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 2:30:37 呼呼
 2:32:32 紅色高跟鞋
 2:34:08 倫敦的愛情
-
 INYRS 第五次 https://youtu.be/QWl-0os6Th8
 8:10 大藝術家
 8:12 輕輕
-12:05 I'm not yours
+12:05 I'm Not Yours
 17:26 私奔到月球
 21:27 女孩們
 24:43 甜祕密
 28:19 920
 33:10 你被寫在我的歌裡
 34:52 特務J
-38:27 看我七十二變
+38:27 看我72變
 42:24 DIY
 43:47 跩個屁
 44:20 日不落
@@ -1456,11 +1452,11 @@ INYRS 第五次 https://youtu.be/QWl-0os6Th8
 2:08:49 Mr.Q
 2:12:32 有一種悲傷
 2:16:42 風箏
-2:22:30 BITE BACK
+2:22:30 Bite Back
 2:26:13 11
 2:30:09 Hellokittybalahcurrihellokitty美味しい
 2:32:38 想見你想見你想見你
-2:36:42 Hey girl
+2:36:42 Hey Girl
 2:41:27 年輪說
 2:46:03 呼呼
 2:49:31 情歌
@@ -1468,7 +1464,7 @@ INYRS 第五次 https://youtu.be/QWl-0os6Th8
 2:53:06 紅豆
 2:57:26 唯一
 3:01:59 愛在夏天
-3:05:46 Oh my oh my
+3:05:46 Oh My Oh My
 3:07:18 心電心
 3:11:21 沒理由
 3:15:10 有沒有
@@ -1493,8 +1489,7 @@ INYRS 第五次 https://youtu.be/QWl-0os6Th8
 4:32:08 好不容易
 4:37:23 慢冷
 4:39:48 手心的薔薇
-
-`; // <-- 請在這裡貼上您的 song_list.txt 內容！
+`;
 
 
 // --- 輔助函式 ---
