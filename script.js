@@ -158,7 +158,7 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 4:10:13 李白
 4:12:32 模特
 4:14:36 夢中的情話
-第3次 補錄 https://youtu.be/9iv4yWvFYD0
+BY2 2025年3月17日 第三次 補錄 https://youtu.be/9iv4yWvFYD0
 0:00 半醉半清醒
 1:52 雨季
 臉紅凱悅第二次 https://youtu.be/pRC5Y3Rkuto
@@ -216,7 +216,8 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 2:41:20 國王皇后
 2:42:45 呼呼
 2:45:06 鬧翻天
-第4次 https://youtu.be/23HGs7q399E
+{N} 第五次 2025年3月21日 https://youtu.be/Qm2x_vuCU60
+BY2 天籟回歸版 2025年3月23日 第四次 https://youtu.be/23HGs7q399E
 0:00 start
 5:39 DNA
 9:19 是我不夠好
@@ -269,7 +270,7 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 3:09:02 下一個天亮
 3:13:53 在樹上唱歌
 3:17:48 粉筆和塗鴉
-第4次-2 https://youtu.be/TXyMLCc83jQ
+BY2 2025年3月23日 第四次-2 https://youtu.be/TXyMLCc83jQ
 3:13 練習愛情
 8:17 亞特蘭提斯
 11:47 1/2
@@ -295,7 +296,11 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 1:05:01 魔鬼中的天使
 1:06:37 失戀無罪
 1:08:25 夢中的情話
-第5次 https://youtu.be/BJB5rPzZhck
+BY2 2025年3月23日 第四次 珍珠美人魚 https://youtu.be/guA6T27l7NQ
+{N} 第六次 2025年3月24日 https://youtu.be/yte3N4kyB5c
+{N} 第六次 2025年3月24日 https://youtu.be/63qsVOTIHnI
+{N} 第六次 2025年3月24日 https://youtu.be/HornMQZRIwg
+BY2 2025年3月29日 第五次 https://youtu.be/BJB5rPzZhck
 4:45 臉盲症
 8:07 雙面妲己
 14:28 沒有你的明天
@@ -313,7 +318,9 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 57:28 過得去
 1:02:44 怎麼還不愛
 1:03:27 阿伯現身
-第6次(SHE) https://youtu.be/kePfepN6zoA
+{N} 第七次 錄音室練習 2025年3月31日 https://youtu.be/PvPGT1UObOU
+{N} 第八次 錄音室練習 錄音室練習 2025年4月2日 https://youtu.be/XHy4LZYVdPU
+SHE 2025年4月4日 第六次 https://youtu.be/kePfepN6zoA
 0:13 Super Star
 4:08 眉飛色舞
 5:25 卡路里
@@ -412,7 +419,7 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 2:21:16 愛請問怎麼走
 2:25:58 是我不夠好
 2:29:30 五天幾年
-第8次 https://youtu.be/6F64q6443XI
+BY2 第八次 2025年4月15日 https://youtu.be/6F64q6443XI
 2:14 Mr.Q
 3:16 秋雨彼一暝
 8:18 傷心酒店
@@ -426,7 +433,8 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 38:28 是他不配
 42:37 夢中的情話
 47:02 粉筆和塗鴉
-第9次 https://youtu.be/_pUO5yR2J5w
+{N} 第九次 2025年4月15日 https://youtu.be/s7N8wyHPpK4
+BY2 第九次 2025年4月26日 https://youtu.be/_pUO5yR2J5w
 0:00 標準美
 2:59 來追我男友吧
 4:13 Fairy Temple
@@ -492,7 +500,7 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 2:51:52 夠愛
 2:56:47 把愛收好
 3:01:01 夢中的情話
-第10次 https://youtu.be/_R7rMMX-DSA
+BY2 第十次 2025年5月3日 https://youtu.be/_R7rMMX-DSA
 0:03 DNA
 3:52 途中
 8:11 有沒有
@@ -522,7 +530,9 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 1:28:05 含淚跳恰恰
 1:29:54 傷心酒店
 1:31:47 夢中的情話
-第11次 https://youtu.be/mmD6beUk_44
+2025年5月8日 https://youtu.be/NQunmNb-No8
+BY2 第11次 2025年5月10日 https://youtu.be/QQNnZWDyIUI
+BY2 第11次 2025年5月10日 https://youtu.be/mmD6beUk_44
 0:03 DNA
 3:55 心裡的孩子
 7:19 月牙灣
@@ -584,10 +594,12 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 3:29:04 Chillaxing
 3:32:50 365天
 3:34:20 秋雨彼一暝
-第11次-2 https://youtu.be/zeKSxaozeeQ
+BY2 第11次-2 2025年5月10日 https://youtu.be/zeKSxaozeeQ
 0:00 傷心酒店
 3:28 夢中的情話
-第12次 https://youtu.be/Y6UD02X5FqA
+情歌王子 https://youtu.be/KPLsJttddyw
+歌唱比賽 https://youtu.be/QY25ZL05Z9Q
+BY2 第12次 2025年5月17日 https://youtu.be/Y6UD02X5FqA
 00:00 DNA
 3:12 分手後不要做朋友
 7:36 好朋友只是朋友
@@ -595,7 +607,7 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 16:32 小姐請你給我愛
 18:00 愛存在
 22:20 雨季
-27:03 明明愛你
+27:03 明明愛理解
 32:41 踮起腳尖愛
 37:27 心裡的孩子
 39:03 從未到過的地方
@@ -606,7 +618,9 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 1:00:07 煎熬
 1:04:46 亞特蘭提斯
 1:08:26 夢中的情話
-第13次 https://youtu.be/SpjdeTcc50A
+陳芸姍  - 雨季（audio） https://youtu.be/qjZm7RDR69U
+{N} 第十次 2025年5月24日 https://youtu.be/arWufkT1byw
+BY2 第13次 2025年5月24日 https://youtu.be/SpjdeTcc50A
 0:00 Lin極限
 13:37 DNA
 17:24 卡路里
@@ -643,7 +657,7 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 2:15:29 返來阮身邊
 2:17:28 傷心酒店
 2:19:27 夢中的情話
-aespa 第14次 https://youtu.be/wTLML2vm-84
+aespa 第14次 2025年5月31日 https://youtu.be/wTLML2vm-84
 0:00 DNA
 3:44 月牙灣
 8:58 Lydia
@@ -699,7 +713,7 @@ aespa 第14次 https://youtu.be/wTLML2vm-84
 3:18:05 日不落
 3:22:08 愛你
 3:25:36 夢中的情話
-第15次 https://youtu.be/a1d8pzzfYm0
+N² 第15次 2025年6月8日 https://youtu.be/a1d8pzzfYm0
 0:17 帶我走
 5:15 月牙灣
 10:09 Lydia
@@ -763,7 +777,7 @@ aespa 第14次 https://youtu.be/wTLML2vm-84
 2:27:09 來追我男友吧
 2:28:21 暴風雪
 2:31:16 馬可波羅
-第16次 https://youtu.be/qZPIml_KrJI
+N² 第16次 2025年6月14日 https://youtu.be/qZPIml_KrJI
 2:03 呼呼
 5:32 安靜了
 7:44 勢在必行
@@ -802,7 +816,7 @@ aespa 第14次 https://youtu.be/wTLML2vm-84
 2:00:53 堅強過頭
 2:04:23 夠不著的你
 2:08:58 夢中的情話
-JPM 第17次 https://youtu.be/1OXRh-E0MLM
+JPM 第17次 2025年6月15日 https://youtu.be/1OXRh-E0MLM
 0:23 刻在我心底的名字
 6:34 日不落
 10:30 不醉不會
@@ -838,7 +852,7 @@ JPM 第17次 https://youtu.be/1OXRh-E0MLM
 2:02:51 分手後不要做朋友
 2:07:35 踮起腳尖愛
 2:12:22 夢中的情話
-第18次 https://youtu.be/Bc_8GZ6grSs
+N² 第18次 2025年6月22日 https://youtu.be/Bc_8GZ6grSs
 4:50 女神
 8:13 存在的力量
 12:12 微加幸福
@@ -864,14 +878,14 @@ JPM 第17次 https://youtu.be/1OXRh-E0MLM
 1:36:32 前面路口停
 1:40:50 夢中的情話
 1:44:56 明明愛你
-第19次 https://youtu.be/4mqPYDUmYCI
+N² 第19次 2025年6月29日 https://youtu.be/4mqPYDUmYCI
 2:50 DNA
 6:21 是我不夠好
 9:40 不哭
 14:13 夠不著的你
 19:08 一個人想著一個人
 23:17 明明愛你
-第20次 https://youtu.be/11SsXXdWYhk
+N² 第20次 2025年6月30日 https://youtu.be/11SsXXdWYhk
 0:30 微加幸福
 5:23 你曾是少年
 10:00 SHERO
@@ -911,7 +925,7 @@ JPM 第17次 https://youtu.be/1OXRh-E0MLM
 2:04:23 少一點天份
 2:06:35 秋雨彼一暝
 2:11:29 傷心酒店
-第21次 https://youtu.be/q8UNo_5SSFo
+N² 第21次 2025年7月6日 https://youtu.be/q8UNo_5SSFo
 0:00 開始
 3:40 DNA
 7:20 你好不好
@@ -962,7 +976,7 @@ JPM 第17次 https://youtu.be/1OXRh-E0MLM
 2:43:31 分手後不要做朋友
 2:45:24 心電心
 2:47:24 我不離開
-第22次 https://youtu.be/58iNikAKym4
+N² 第22次 2025年7月20日 https://youtu.be/58iNikAKym4
 10:23 DNA
 14:00 怎麼了
 19:11 返來阮身邊
@@ -1004,7 +1018,7 @@ JPM 第17次 https://youtu.be/1OXRh-E0MLM
 2:38:23 夢中的情話
 2:40:25 秋雨彼一暝
 2:42:36 傷心酒店
-aespa 第23次 https://youtu.be/cAu45IJGwbY
+aespa 第23次 2025年8月2日 https://youtu.be/cAu45IJGwbY
 0:00 稻香
 0:48 Eleven
 4:07 刻在我心底的名字
@@ -1110,7 +1124,19 @@ aespa 第23次 https://youtu.be/cAu45IJGwbY
 5:27:15 Drama
 5:30:55 UP
 5:32:37 Up & Down
-第24次 https://youtu.be/u7sqURDH84Y
+譚琳 - 聽見下雨的聲音 (Preview) https://youtu.be/CYuTd65B-ZM
+琪心協力 第一次 2025年8月9日 https://youtu.be/3TxH7RR6I9U
+1:16 Whiplash
+6:10 Set The Tone
+9:37 Armageddon
+13:17 Supernova
+14:22 Pleasure
+17:34 Gnarly
+18:58 聽見下雨的聲音
+24:32 Like Jennie
+27:06 雨愛
+31:29 匿名的好友
+N² 第24次 2025年8月16日 https://youtu.be/u7sqURDH84Y
 3:16 叉燒包
 5:37 一個人想著一個人
 9:41 心裡的孩子
@@ -1167,18 +1193,7 @@ aespa 第23次 https://youtu.be/cAu45IJGwbY
 3:13:24 傷心酒店
 3:14:32 秋雨彼一暝
 3:16:35 夢中的情話
-琪心協力 第一次 https://youtu.be/3TxH7RR6I9U
-1:16 Whiplash
-6:10 Set The Tone
-9:37 Armageddon
-13:17 Supernova
-14:22 Pleasure
-17:34 Gnarly
-18:58 聽見下雨的聲音
-24:32 Like Jennie
-27:06 雨愛
-31:29 匿名的好友
-琪心協力 第二次 https://youtu.be/rqLdQPVMWXY
+琪心協力 第二次 2025年8月23日 https://youtu.be/rqLdQPVMWXY
 2:38 大藝術家
 6:16 日不落
 10:14 輕輕
@@ -1202,7 +1217,7 @@ aespa 第23次 https://youtu.be/cAu45IJGwbY
 1:18:08 Lydia
 1:22:20 無言以對
 1:23:51 刻在我心底的名字
-aespa 第25次 https://youtu.be/3eI-CUNkCyo
+aespa 第25次 2025年8月24日 https://youtu.be/3eI-CUNkCyo
 1:40 Angel And Devil
 4:57 我好寂寞
 7:41 Gnarly
@@ -1231,7 +1246,14 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 1:35:18 美人計
 1:38:59 I'm Not Yours
 1:44:08 踮起腳尖愛
-琪心協力 第三次 https://youtu.be/Jc77IrEf5Zg
+臉紅 第三次 2025年11月22日 https://youtu.be/oXjEGFpQFgc
+臉紅 第四次 2025年12月1日 IN SEOUL https://youtu.be/9gy_IE_T6vk
+臉紅 第五次 2025年12月25日 https://youtu.be/LI_mK8l1kNI
+2:06:20 戀愛元氣彈
+3:31:14 第一天
+{N} 第十二次 2026年1月18日 https://youtu.be/J6UTIcE-rww
+{N} 第十二次 2026年1月25日 https://youtu.be/l_9NRC5OP1M
+INYES 第三次 2026年2月8日 https://youtu.be/Jc77IrEf5Zg
 9:20 輕輕
 14:30 心裡的孩子
 17:51 靚仔
@@ -1251,7 +1273,7 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 1:15:22 特務J
 1:19:13 愛你
 1:23:59 Play我呸
-{N} 第十四次 https://youtu.be/F3iZdHVt9RA
+{N} 第十四次 2026年2月13日 https://youtu.be/F3iZdHVt9RA
 4:36 李白
 9:16 模特
 11:43 打呼
@@ -1259,7 +1281,7 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 18:02 怪美的
 22:13 夠不著的你
 27:06 刻在我心底的名字
-{N} 第十五次 https://youtu.be/lDFcwzH9fEY
+{N} 第十五次 2026年2月15日 https://youtu.be/lDFcwzH9fEY
 3:45 微加幸福
 8:32 一個人想著一個人
 12:40 不過失去了一點點
@@ -1301,7 +1323,7 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 2:43:41 明明愛你
 2:49:14 臉盲症
 2:52:23 雙面妲己
-琪心協力 第四次 https://youtu.be/MGC3RZtPxeM
+INYRS 第四次 2026年2月15日 https://youtu.be/MGC3RZtPxeM
 8:17 大藝術家
 11:35 特務J
 15:00 I'm Not Yours
@@ -1329,7 +1351,9 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 1:31:35 聽見下雨的聲音
 1:35:56 菊花台
 1:37:40 勢在必行
-{N} 第十七次 https://youtu.be/aS9P7XFY8UY
+{N} 第十六次 2026年3月29日 S23 https://youtu.be/khmjXxLwaK0
+{N} 第十六次 2026年3月29日 S26 https://youtu.be/Azab93omQ2I
+{N} 第十七次 2026年5月1日 https://youtu.be/aS9P7XFY8UY
 1:16 乖乖牌
 5:30 亞特蘭提斯
 9:26 Play我呸
@@ -1360,7 +1384,7 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 1:59:54 Baby Boy
 2:01:10 我沒資格
 2:02:41 夠不著的你
-{N} 第十八次 https://youtu.be/BJ0OlgadZOs
+{N} 第十八次 2026年5月31日 https://youtu.be/BJ0OlgadZOs
 5:09 Hellokittybalahcurrihellokitty美味しい
 7:06 Fire Fighter
 8:26 頑美
@@ -1411,7 +1435,7 @@ aespa 第25次 https://youtu.be/3eI-CUNkCyo
 2:30:37 呼呼
 2:32:32 紅色高跟鞋
 2:34:08 倫敦的愛情
-INYRS 第五次 https://youtu.be/QWl-0os6Th8
+INYRS 第五次 2026年7月2日 https://youtu.be/QWl-0os6Th8
 8:10 大藝術家
 8:12 輕輕
 12:05 I'm Not Yours
@@ -1489,6 +1513,8 @@ INYRS 第五次 https://youtu.be/QWl-0os6Th8
 4:32:08 好不容易
 4:37:23 慢冷
 4:39:48 手心的薔薇
+{N} 第十九次 2026年8月17日 https://youtu.be/68__A0IMtc0
+{N} 第二十次 2026年8月28日 https://youtu.be/vRh-nMkHLRU
 `;
 
 
