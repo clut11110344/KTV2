@@ -23,14 +23,14 @@ let lastSuggestionQuery = '';
 // `;
 // 請確保您的 YouTube 連結是真實有效的！
 const EMBEDDED_SONG_LIST_CONTENT = `
-第1次 https://youtu.be/y_nuffqSh3c
+N² 第1次 https://youtu.be/y_nuffqSh3c
 0:00 心牆
 2:05 下一個天亮
 4:09 含淚跳恰恰
 5:52 秋雨彼一暝
 8:37 心狠手辣
 10:34 夢中的情話
-第2次 https://youtu.be/ZL9VtkxKBuI
+N² 第2次 https://youtu.be/ZL9VtkxKBuI
 00:01 愛情的騙子我問你
 4:02 愛情限時批
 5:28 我不要
@@ -91,7 +91,7 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 2:55:00 年輪說
 2:57:00 怎麼還不愛
 3:01:19 半醉半清醒
-第3次 https://youtu.be/GrAlzdiSWUM
+N² 第3次 https://youtu.be/GrAlzdiSWUM
 00:00 DNA
 3:36 追追追
 8:38 雨蝶
@@ -158,10 +158,11 @@ const EMBEDDED_SONG_LIST_CONTENT = `
 4:10:13 李白
 4:12:32 模特
 4:14:36 夢中的情話
-BY2 第3次 2025年3月17日 補錄 https://youtu.be/9iv4yWvFYD0
+臉紅 第1次 2025年2月23日 https://youtu.be/yQrDBPrkVN0
+N² 第3次 2025年3月17日 補錄 https://youtu.be/9iv4yWvFYD0
 0:00 半醉半清醒
 1:52 雨季
-臉紅凱悅 第2次 https://youtu.be/pRC5Y3Rkuto
+臉紅 第2次 2025年3月20日 https://youtu.be/pRC5Y3Rkuto
 0:00 Love Is Lonely
 0:53 沒有你的明天
 3:15 四季
@@ -217,7 +218,7 @@ BY2 第3次 2025年3月17日 補錄 https://youtu.be/9iv4yWvFYD0
 2:42:45 呼呼
 2:45:06 鬧翻天
 {N} 第5次 2025年3月21日 https://youtu.be/Qm2x_vuCU60
-BY2 天籟回歸版 第4次 2025年3月23日 https://youtu.be/23HGs7q399E
+N² 天籟回歸版 第4次 2025年3月23日 https://youtu.be/23HGs7q399E
 0:00 start
 5:39 DNA
 9:19 是我不夠好
@@ -270,7 +271,7 @@ BY2 天籟回歸版 第4次 2025年3月23日 https://youtu.be/23HGs7q399E
 3:09:02 下一個天亮
 3:13:53 在樹上唱歌
 3:17:48 粉筆和塗鴉
-BY2 第4次-2 2025年3月23日 https://youtu.be/TXyMLCc83jQ
+N² 第4次-2 2025年3月23日 https://youtu.be/TXyMLCc83jQ
 3:13 練習愛情
 8:17 亞特蘭提斯
 11:47 1/2
@@ -296,11 +297,11 @@ BY2 第4次-2 2025年3月23日 https://youtu.be/TXyMLCc83jQ
 1:05:01 魔鬼中的天使
 1:06:37 失戀無罪
 1:08:25 夢中的情話
-BY2 第4次 2025年3月23日 珍珠美人魚 https://youtu.be/guA6T27l7NQ
+N² 第4次 2025年3月23日 珍珠美人魚 https://youtu.be/guA6T27l7NQ
 {N} 第6次 2025年3月24日 https://youtu.be/yte3N4kyB5c
 {N} 第6次 2025年3月24日 https://youtu.be/63qsVOTIHnI
 {N} 第6次 2025年3月24日 https://youtu.be/HornMQZRIwg
-BY2 第5次 2025年3月29日 https://youtu.be/BJB5rPzZhck
+N² 第5次 2025年3月29日 https://youtu.be/BJB5rPzZhck
 4:45 臉盲症
 8:07 雙面妲己
 14:28 沒有你的明天
@@ -354,7 +355,7 @@ SHE 第6次 2025年4月4日 https://youtu.be/kePfepN6zoA
 2:01:06 星火
 2:03:11 光年之外
 2:07:06 下雨天
-第7次 https://youtu.be/yNzpqqKSPDM
+N² 第7次 https://youtu.be/yNzpqqKSPDM
 0:07 DNA
 3:46 愛情的騙子我問你
 8:19 我不要
@@ -419,7 +420,7 @@ SHE 第6次 2025年4月4日 https://youtu.be/kePfepN6zoA
 2:21:16 愛請問怎麼走
 2:25:58 是我不夠好
 2:29:30 五天幾年
-BY2 第8次 2025年4月15日 https://youtu.be/6F64q6443XI
+N² 第8次 2025年4月15日 https://youtu.be/6F64q6443XI
 2:14 Mr.Q
 3:16 秋雨彼一暝
 8:18 傷心酒店
@@ -434,7 +435,7 @@ BY2 第8次 2025年4月15日 https://youtu.be/6F64q6443XI
 42:37 夢中的情話
 47:02 粉筆和塗鴉
 {N} 第9次 2025年4月15日 https://youtu.be/s7N8wyHPpK4
-BY2 第9次 2025年4月26日 https://youtu.be/_pUO5yR2J5w
+N² 第9次 2025年4月26日 https://youtu.be/_pUO5yR2J5w
 0:00 標準美
 2:59 來追我男友吧
 4:13 Fairy Temple
@@ -500,7 +501,7 @@ BY2 第9次 2025年4月26日 https://youtu.be/_pUO5yR2J5w
 2:51:52 夠愛
 2:56:47 把愛收好
 3:01:01 夢中的情話
-BY2 第10次 2025年5月3日 https://youtu.be/_R7rMMX-DSA
+N² 第10次 2025年5月3日 https://youtu.be/_R7rMMX-DSA
 0:03 DNA
 3:52 途中
 8:11 有沒有
@@ -530,9 +531,8 @@ BY2 第10次 2025年5月3日 https://youtu.be/_R7rMMX-DSA
 1:28:05 含淚跳恰恰
 1:29:54 傷心酒店
 1:31:47 夢中的情話
-2025年5月8日 https://youtu.be/NQunmNb-No8
-BY2 第11次 2025年5月10日 https://youtu.be/QQNnZWDyIUI
-BY2 第11次 2025年5月10日 https://youtu.be/mmD6beUk_44
+N² 第11次 2025年5月10日 https://youtu.be/QQNnZWDyIUI
+N² 第11次 2025年5月10日 https://youtu.be/mmD6beUk_44
 0:03 DNA
 3:55 心裡的孩子
 7:19 月牙灣
@@ -594,12 +594,15 @@ BY2 第11次 2025年5月10日 https://youtu.be/mmD6beUk_44
 3:29:04 Chillaxing
 3:32:50 365天
 3:34:20 秋雨彼一暝
-BY2 第11次-2 2025年5月10日 https://youtu.be/zeKSxaozeeQ
+N² 第11次-2 2025年5月10日 https://youtu.be/zeKSxaozeeQ
 0:00 傷心酒店
 3:28 夢中的情話
-情歌王子 https://youtu.be/KPLsJttddyw
 歌唱比賽 https://youtu.be/QY25ZL05Z9Q
-BY2 第12次 2025年5月17日 https://youtu.be/Y6UD02X5FqA
+25:32 人生的歌
+37:43 有一種悲傷
+42:12 微加幸福
+1:24:01 Let everything happen
+N² 第12次 2025年5月17日 https://youtu.be/Y6UD02X5FqA
 00:00 DNA
 3:12 分手後不要做朋友
 7:36 好朋友只是朋友
@@ -618,9 +621,8 @@ BY2 第12次 2025年5月17日 https://youtu.be/Y6UD02X5FqA
 1:00:07 煎熬
 1:04:46 亞特蘭提斯
 1:08:26 夢中的情話
-陳芸姍 - 雨季（audio） https://youtu.be/qjZm7RDR69U
 {N} 第10次 2025年5月24日 https://youtu.be/arWufkT1byw
-BY2 第13次 2025年5月24日 https://youtu.be/SpjdeTcc50A
+N² 第13次 2025年5月24日 https://youtu.be/SpjdeTcc50A
 0:00 Lin極限
 13:37 DNA
 17:24 卡路里
@@ -1124,7 +1126,6 @@ aespa 第23次 2025年8月2日 https://youtu.be/cAu45IJGwbY
 5:27:15 Drama
 5:30:55 UP
 5:32:37 Up & Down
-譚琳 - 聽見下雨的聲音 (Preview) https://youtu.be/CYuTd65B-ZM
 琪心協力 第1次 2025年8月9日 https://youtu.be/3TxH7RR6I9U
 1:16 Whiplash
 6:10 Set The Tone
@@ -1382,7 +1383,7 @@ INYRS 第4次 2026年2月15日 https://youtu.be/MGC3RZtPxeM
 1:59:54 Baby Boy
 2:01:10 我沒資格
 2:02:41 夠不著的你
-2026年5月18日 https://youtu.be/pV2fL8c2y30
+N² 2026年5月18日 https://youtu.be/pV2fL8c2y30
 {N} 第18次 2026年5月31日 https://youtu.be/BJ0OlgadZOs
 5:09 Hellokittybalahcurrihellokitty美味しい
 7:06 Fire Fighter
@@ -1514,6 +1515,43 @@ INYRS 第5次 2026年7月2日 https://youtu.be/QWl-0os6Th8
 4:39:48 手心的薔薇
 {N} 第19次 2026年8月17日 https://youtu.be/68__A0IMtc0
 {N} 第20次 2026年8月28日 https://youtu.be/vRh-nMkHLRU
+1:13  心裡的孩子
+4:26 雨蝶
+6:06 Hey Girl
+10:04 Let everything happen
+14:36 手掌心
+16:19 數到十
+20:09 粉筆與塗鴉
+23:02 心牆
+24:59 不應該勇敢
+29:24 幸福就好
+32:54 從未到過的地方
+36:48 年輪說
+41:16 心花開
+42:40 失憶的金魚
+44:23 雨季
+48:58 愛存在
+53:18 風中的承諾
+54:49 往事隨風
+56:19 不醉不會
+58:09 微加幸福
+1:02:51 明明愛你
+1:04:59 給我一個理由忘記
+1:07:16 11
+1:11:04 好朋友只是朋友
+1:12:59 分手後不要做朋友
+1:15:21 好好先生
+1:18:02 有一種悲傷
+1:22:39 末班車
+1:24:44 何紡
+1:26:26 命運
+1:28:03 一個人想著一個人
+1:29:47 道聽塗說
+1:31:51 任意門
+1:32:34 BITE BACK
+1:34:28 Baby boy
+1:35:36 Super Girl 愛無畏
+1:37:28 紅衣女孩
 `;
 
 
